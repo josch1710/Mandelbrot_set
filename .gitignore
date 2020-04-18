@@ -3,4 +3,13 @@
 *.o
 *.dylib
 *.3mf
+*.cmake
+a.out
+*.make
+Makefile
+depend.*
+mandelbrot
+CMakeFiles
+CMakeCache.txt
+.vscode
 

@@ -70,7 +70,7 @@ void fractal(window<T> &scr, window<double> &fract, int iter_max, height_matrix<
 void mandelbrot() {
 	using screentype = double;
 	// Define the size of the image
-	window<screentype> scr(0, 200, 0, 200, 0.2, 0.2);
+	window<screentype> scr(0, 100, 0, 100, 5.0, 5.0);
 	// The domain in which we test for points
 	window<double> fract(-2.2, 1.2, -1.7, 1.7);
 
@@ -78,7 +78,7 @@ void mandelbrot() {
 	auto func = [] (Complex z, Complex c) -> Complex {return z * z + c; };
 
 	int iter_max = 100;
-	const char *fname = "mandelbrot.3mf";
+	const char *fname = "mandelbrot_5.0.3mf";
 	bool smooth_color = true;
 
 	height_matrix<screentype> heights(scr.height(), height_vector<screentype>(scr.width(), 0));
@@ -92,7 +92,7 @@ void mandelbrot() {
 void triple_mandelbrot() {
 	using screentype = double;
 	// Define the size of the image
-	window<screentype> scr(0, 200, 0, 200, 0.2, 0.2);
+	window<screentype> scr(0, 100, 0, 100, 0.2, 0.2);
 	// The domain in which we test for points
 	window<double> fract(-1.5, 1.5, -1.5, 1.5);
 
@@ -106,10 +106,29 @@ void triple_mandelbrot() {
 	fractal(scr, fract, iter_max, heights, func, fname);
 }
 
+void mandelbrot_zoom()
+{
+	using screentype = double;
+	// Define the size of the image
+	window<screentype> scr(0, 100, 0, 100, 0.5, 0.5);
+	// The domain in which we test for points
+	window<double> fract(-0.84906686640044926, 0.01497242904486658, -0.84906686639661455, 0.01497242904870132);
+
+	// The function used to calculate the fractal
+	auto func = [] (Complex z, Complex c) -> Complex {return z * z * z + c; };
+
+	int iter_max = 100;
+	const char *fname = "mandelbrot_zoom.3mf";
+	height_matrix<screentype> heights(scr.height(), height_vector<screentype>(scr.width(), 0));
+
+	fractal(scr, fract, iter_max, heights, func, fname);
+}
+
 int main() {
 
 	mandelbrot();
-	triple_mandelbrot();
+	//triple_mandelbrot();
+	//mandelbrot_zoom();
 
 	return 0;
 }
